@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+
+    /*
+       Задание:
+        Сложить в элементе с id App следующую размету HTML:
+
+        <header>
+          <a href="http://google.com.ua">
+            <img src="https://www.google.com.ua/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+          </a>
+          <div class="menu">
+            <a href="#1"> link 1</a>
+            <a href="#1"> link 2</a>
+            <a href="#1"> link 3</a>
+          </div>
+        </header>
+
+        Используя следующие методы для работы:
+        getElementById
+        createElement
+        element.innerText
+        element.className
+        element.setAttribute
+        element.appendChild
+    */
+    let header = document.createElement('header');
+    let a = document.createElement('a');
+        a.href = "http://google.com.ua";
+
+    let img = document.createElement('img');
+        img.src = "https://www.google.com.ua/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png";
+
+    let div = document.createElement('div');
+        div.className = 'menu';
+
+    let a_1 = document.createElement('a');
+        a_1.href = "https://www.codewars.com/dashboard";
+        a_1.innerText = ' link 1';
+
+    let a_2 = document.createElement('a');
+        a_2.href = "http://www.quizful.net/test/javascript-dom";
+        a_2.innerText = ' link 2';
+
+    let a_3 = document.createElement('a');
+        a_3.href = "https://www.freecodecamp.org/learn";
+        a_3.innerText = ' link 3';
+
+    a.appendChild(img);
+
+    div.appendChild(a_1);
+    div.appendChild(a_2);
+    div.appendChild(a_3);
+
+    header.appendChild(a);
+    header.appendChild(div);
+
+   let app = document.querySelector('#app');
+    app.appendChild(header);
+
+
+
+</script>
+</body>
+</html>

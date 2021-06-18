@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+      Задание 0:
+
+      - Вывести ОДИН лог в котором будет идентефикатор 'Combined log:' и массив Table
+      - Вывести в консоль табличку из массива который находится в переменной Table
+      - Вывести сообщение с ошибкой "Oops! Something gonna wrong!"
+      - Вывести предупреждение "Be careful in the dark! It's can be dangerous"
+      - Вывести цветной лог, где сообщение будет написано зеленым цветом и 30 размером шрифта
+      - Сгрупировать несколько консоль логов, которые будут выводится друг за другом.
+        | log 1
+        |- Group
+        |- Log 2
+    */
+
+
+    let Table = ['Hey!', 'this', 'is', 'js', 'advanced', 'course'];
+    console.table('Combined log:',Table);
+    console.table(Table);
+    console.error("Oops! Something gonna wrong!");
+    console.warn("Be careful in the dark! It's can be dangerous");
+    console.log('%cText',"font-size:30px;color:green;");
+    console.group();
+    console.log('log 1');
+    console.group();
+    console.log('log 2');
+    console.group();
+    console.log('log 3');
+    console.group();
+    console.log('log 4');
+    console.groupEnd();
+
+
+
+
+</script>
+</body>
+</html>
