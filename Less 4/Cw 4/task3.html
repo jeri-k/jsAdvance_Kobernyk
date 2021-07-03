@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Form work1</title>
+    <script>
+        /*
+          Задание:
+            Создать список дел, в который можно:
+            - Добавить новый элемент
+            - Удалить элемент
+            - Задать что пункт выполнен
+
+          Шаблон элемента:
+            <li class="listItem">
+                <input type="checkbox" class="DoneCheckbox" />
+                <span class="TodoText">{add text}</span>
+                <button>Remove</button>
+            </li>
+
+        */
+
+
+        window.addEventListener("load", function () {
+            const newToDo = document.getElementById('newToDo')
+            const AddToDo = document.getElementById('AddToDo')
+            const toDoList = document.getElementById('toDoList')
+
+            function createTask() {
+                if (newToDo.value) {
+                    let li = document.createElement('li')
+                    li.setAttribute('class', 'listItem')
+                    li.style.margin = '5px'
+
+                    let input = document.createElement('input')
+                    input.setAttribute('class', 'DoneCheckbox',)
+                    input.setAttribute('type', 'checkbox')
+
+
+                    let span = document.createElement('span')
+                    span.setAttribute('class', 'TodoText')
+                    span.innerText = `${newToDo.value}`
+                    newToDo.value = ''
+
+                    let button = document.createElement('button')
+                    button.innerText = 'Remove'
+                    button.disabled = true
+
+
+                    toDoList.appendChild(li)
+                    li.appendChild(input)
+                    li.appendChild(span)
+                    li.appendChild(button)
+
+
+                    function btnDisabled() {
+                        if (this.checked) {
+                            button.disabled = false
+                        }
+                    }
+
+                    function removeTask() {
+                        li.remove()
+                    }
+
+                    input.addEventListener('change', btnDisabled)
+                    button.addEventListener('click', removeTask)
+
+                } else {
+                    alert('Entered task!')
+                }
+
+
+            }
+
+            AddToDo.addEventListener('click', createTask);
+        });
+
+
+    </script>
+</head>
+<body>
+<header>
+    <input id="newToDo" class="textInput"/>
+    <input id="AddToDo" class="addButton" type="button" value="Add"/>
+</header>
+<ul id="toDoList">
+
+    <!--    <li class="listItem">-->
+    <!--        <input type="checkbox" class="DoneCheckbox"/>-->
+    <!--        <span class="TodoText">{add text}</span>-->
+    <!--        <button>Remove</button>-->
+    <!--    </li>-->
+</ul>
+
+<style>
+    .done {
+        text-decoration: line-through;
+    }
+
+    .textInput {
+        box-sizing: border-box;
+        padding: 10px 20px;
+    }
+
+    .addButton {
+        box-sizing: border-box;
+        padding: 10px 20px;
+        background: #ffcc00;
+    }
+
+    .DoneCheckbox,
+    .TodoText {
+        margin-right: 5px;
+    }
+
+    button {
+        background: red;
+        color: #fff;
+        padding: 5px 10px;
+    }
+</style>
+</body>
+</html>

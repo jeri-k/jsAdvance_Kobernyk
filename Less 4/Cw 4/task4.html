@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Form work1</title>
+    <script>
+        /*
+          Задание:
+
+          1. Сгенерировать список стран в Select countries
+          2. При выборе страны генерировать еще один Select со списком
+            городов этой страны и вывести этот селект в блок result
+          3. При выборе города нужно случайно рандомить температуру от
+          -10 градусов до +40. Если температура
+
+            -10 до 0 то 'Солнечно' 'Легкий снегопад' 'Сильный снегопад'
+            0 до 30 то  'Солнечно' 'Дождь' 'Ветер' 'Сильный дождь'
+            30 до 40 то 'Солнечно' 'Засуха' 'Ветер'
+
+          4. Вывести сообщение на страничку
+            {Country}. В {City} {Weather} {Temperature} градусов.
+            Ukraine. В Kyiv Солнечно -10 градусов
+
+            + бонус добавить красивые картинки с погодой
+        */
+        window.addEventListener("load", function () {
+            let City = document.createElement('select');
+            let total = document.querySelector('.total')
+            let countryCheng;
+            let cityCheng;
+
+            const countries = ['Add..', 'Ukraine', 'Poland', 'USA'];
+            const ukraineCity = ['Add..', 'Kyiv', 'Lviv', 'Odesa', 'Charkiv'];
+            const polandCity = ['Add..', 'Warszawa', 'Poznan', 'Krakow', 'Katowice'];
+            const usaCity = ['Add..', 'New York', 'Los Angeles', 'Las Vegas', 'Chicago'];
+            const countriesSelect = document.getElementById('countries');
+            const result = document.getElementById('result');
+
+
+            countries.forEach(item => {
+                countriesSelect.innerHTML += `<option >${item}</option>`;
+                countriesSelect.options.value = '';
+
+            })
+
+            countriesSelect.addEventListener('change', event => {
+                countriesSelect.style.marginBottom = '20px';
+
+
+                if (countriesSelect.options[1].selected === true) {
+                    City.innerHTML = '';
+
+                    ukraineCity.forEach(item => {
+                        City.innerHTML += `<option>${item}</option>`;
+                    })
+                    result.appendChild(City);
+
+                }
+                if (countriesSelect.options[2].selected === true) {
+                    City.innerHTML = '';
+
+                    polandCity.forEach(item => {
+                        City.innerHTML += `<option>${item}</option>`;
+                    })
+                    result.appendChild(City);
+
+                }
+                if (countriesSelect.options[3].selected === true) {
+                    City.innerHTML = '';
+
+                    usaCity.forEach(item => {
+                        City.innerHTML += `<option>${item}</option>`;
+
+                    })
+
+                    result.appendChild(City);
+
+                }
+                City.addEventListener('change', chengCity);
+
+            });
+
+
+            function chengCity() {
+
+                for (let j = 0; j < countriesSelect.children.length; j++) {
+                    if (countriesSelect[j].selected) {
+                        countryCheng = countriesSelect[j].value;
+                    }
+                }
+
+                for (let i = 0; i < City.children.length; i++) {
+                    if (City[i].selected) {
+                        cityCheng = City[i].value;
+                    }
+                }
+                randomTemperature(-10, 40);
+            }
+
+
+            function randomTemperature(min, max) {
+                let resTemp = Math.floor(Math.random() * (max - min + 1) + min);
+                total.style.margin = '20px';
+
+
+                if (resTemp <= -10 || resTemp <= 0) {
+                    let tempOne = ['Солнечно', 'Легкий снегопад', 'Сильный снегопад'];
+                    let strTemp = tempOne[Math.floor(Math.random() * tempOne.length)];
+
+                    total.textContent = `${countryCheng}.` + ' В ' + `${cityCheng} ` + `${resTemp}` + ' градусів ' + `${strTemp}`
+
+
+                } else if (resTemp >= 0 || resTemp <= 30) {
+                    let tempTwo = ['Солнечно', 'Дождь', 'Ветер', 'Сильный дождь'];
+                    let strTemp = tempTwo[Math.floor(Math.random() * tempTwo.length)];
+
+                    total.textContent = `${countryCheng}.` + ' В ' + `${cityCheng} ` + `${resTemp}` + ' градусів ' + `${strTemp}`
+
+
+                } else if (resTemp >= 0 || resTemp <= 30) {
+                    let tempTree = ['Солнечно', 'Засуха', 'Ветер'];
+                    let strTemp = tempTree[Math.floor(Math.random() * tempTree.length)];
+
+                    total.textContent = `${countryCheng}.` + ' В ' + `${cityCheng} ` + `${resTemp}` + ' градусів ' + `${strTemp}`
+
+                }
+
+            }
+
+        });
+
+    </script>
+</head>
+<body>
+<select id="countries"></select>
+<div id="result"></div>
+<div class="total"></div>
+
+</body>
+</html>
