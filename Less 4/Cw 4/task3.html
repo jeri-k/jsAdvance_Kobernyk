@@ -22,52 +22,57 @@
 
 
         window.addEventListener("load", function () {
-            const newToDo = document.getElementById('newToDo')
-            const AddToDo = document.getElementById('AddToDo')
-            const toDoList = document.getElementById('toDoList')
+            const newToDo = document.getElementById('newToDo');
+            const AddToDo = document.getElementById('AddToDo');
+            const toDoList = document.getElementById('toDoList');
 
             function createTask() {
                 if (newToDo.value) {
-                    let li = document.createElement('li')
-                    li.setAttribute('class', 'listItem')
-                    li.style.margin = '5px'
+                    let li = document.createElement('li');
+                    li.setAttribute('class', 'listItem');
+                    li.style.margin = '5px';
 
-                    let input = document.createElement('input')
-                    input.setAttribute('class', 'DoneCheckbox',)
-                    input.setAttribute('type', 'checkbox')
-
-
-                    let span = document.createElement('span')
-                    span.setAttribute('class', 'TodoText')
-                    span.innerText = `${newToDo.value}`
-                    newToDo.value = ''
-
-                    let button = document.createElement('button')
-                    button.innerText = 'Remove'
-                    button.disabled = true
+                    let input = document.createElement('input');
+                    input.setAttribute('class', 'DoneCheckbox',);
+                    input.setAttribute('type', 'checkbox');
 
 
-                    toDoList.appendChild(li)
-                    li.appendChild(input)
-                    li.appendChild(span)
-                    li.appendChild(button)
+                    let span = document.createElement('span');
+                    span.setAttribute('class', 'TodoText');
+                    span.innerText = `${newToDo.value}`;
+                    newToDo.value = '';
+
+                    let button = document.createElement('button');
+                    button.innerText = 'Remove';
+                    button.disabled = true;
+
+
+                    toDoList.appendChild(li);
+                    li.appendChild(input);
+                    li.appendChild(span);
+                    li.appendChild(button);
 
 
                     function btnDisabled() {
                         if (this.checked) {
-                            button.disabled = false
+                            li.classList.add('done-task');
+                            button.disabled = false;
+                        }
+                        else {
+                            li.classList.remove('done-task');
+
                         }
                     }
 
                     function removeTask() {
-                        li.remove()
+                        li.remove();
                     }
 
-                    input.addEventListener('change', btnDisabled)
-                    button.addEventListener('click', removeTask)
+                    input.addEventListener('change', btnDisabled);
+                    button.addEventListener('click', removeTask);
 
                 } else {
-                    alert('Entered task!')
+                    alert('Entered task!');
                 }
 
 
@@ -118,6 +123,10 @@
         background: red;
         color: #fff;
         padding: 5px 10px;
+    }
+
+    .done-task {
+        text-decoration: line-through solid red;
     }
 </style>
 </body>
